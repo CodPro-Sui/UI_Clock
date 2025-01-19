@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title></title>
+  <!-- style here && UI-->
+  <style type="text/css" media="all">
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      color: #2F0606;
+    }
+
+    body {
+      background: #040511;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    .clock_info {
+      padding: 15px 10px;
+      border: 1px solid #C7C7C7;
+      box-shadow: 0 0 0px 4px #A1AAA442,
+        0 0 0 8px #A1AAA42B,
+        0 0 14px 10px #A1AAA445;
+
+      background: #FFFFFF3B;
+      width: 300px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      border-radius: 8px;
+    }
+
+    .clock {
+      padding: 25px 18px;
+      box-shadow: 0 0 18px #F9FFFFBD;
+      border-radius: 8px;
+    }
+
+    .clock span {
+      font-size: 3em;
+      letter-spacing: .2px;
+      padding: 1px;
+    }
+
+    .clock .colon {
+      font-size: 3.5em;
+      color: #061D2F
+    }
+
+    .date {
+      padding: 40px 0 10px 0;
+      text-align: center;
+      font-size: .82em;
+      letter-spacing: .3px;
+    }
+
+    #day {
+      text-align: center;
+      font-size: 3.3em;
+      letter-spacing: .5px;
+    }
+
+    #seconds {
+      color: #995807
+    }
+    #current_date{
+      padding: 0px 0 0 0;font-size: 5em;
+      margin-top: 40px
+
+    }
+    #current_date span{
+      border: 1px solid #04EFBA;
+      display: flex;
+      color: #04765C;
+      justify-content: center;
+      align-items: center;
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+    }
+    #day{
+      color: #0573DE;
+    }
+  </style>
+
+</head>
+
+<body>
+  <div class="clock_info">
+    <!-- clock -->
+    <div class="clock">
+      <span id="hours">00</span>
+      <span class="colon">:</span>
+      <span id="minutes">00</span>
+      <span class="colon">:</span>
+      <span id="seconds">00</span>
+    </div>
+    <!-- date -->
+    <div id="current_date">
+      <span id="today">0</span>
+    </div>
+    <div class="date">
+      <span id="day">Sunday</span><br />
+      <span id="month">c</span>
+      <span id="year">2029</span>
+    </div>
+  </div>
+
+
+  <!-- logic scripting -->
+  <script>
+    //time logic
+    function time() {
+      setInterval(function() {
+        let current = new Date();
+        let hours = document.getElementById('hours');
+        let minutes = document.getElementById('minutes');
+        let seconds = document.getElementById('seconds');
+
+        hours.innerHTML = String(current.getHours()).padStart(2, '0');
+        minutes.innerHTML = String(current.getMinutes()).padStart(2, '0');
+        seconds.innerHTML = String(current.getSeconds()).padStart(2, '0');
+      }, 1000);
+    }
+    time();
+
+
+
+    // Date logic
+    
+    let now = new Date();
+    let week = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+    let months = ['January','February','March', 'April','May','June','July','August','September','October','November','December'];
+    let day = document.getElementById('day');
+    let month = document.getElementById('month');
+    let year = document.getElementById('year');
+    
+    year.innerHTML = now.getFullYear();
+    let c_nDay = now.getDay();
+    day.innerHTML = week[c_nDay];
+    let c_nMonth = now.getMonth();
+    month.innerHTML = months[c_nMonth];
+
+let date = document.getElementById('today');
+date.innerHTML = String(now.getDate());
+  </script>
+</body>
+
+</html>
